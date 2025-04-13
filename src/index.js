@@ -22,8 +22,9 @@ app.use("/api/healthz", (req, res) => {
 }
 );
 
+const PORT = process.env.PORT || 7777;
 
-app.listen(async () => {
+app.listen(PORT,async () => {
   await connectDB();
-  console.log("Server is listening on port", process.env.PORT);
+  console.log("Server is listening on port", PORT);
 });
