@@ -17,6 +17,11 @@ app.use(express.json());
 
 app.use("api/admin", adminRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/healthz", (req, res) => {
+  res.status(200).json({ message: "Server is running" });
+}
+);
+
 
 app.listen(async () => {
   await connectDB();
