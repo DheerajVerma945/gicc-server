@@ -2,7 +2,7 @@ import express from "express";
 import { connectDB } from "./utils/db.js";
 import dotenv from "dotenv";
 import authRouter from "./routes/auth.route.js";
-import adminRouter from "./routes/admin.route.js";
+import adminRouter from "./routes/admin.routes.js";
 import cors from "cors";
 
 dotenv.config();
