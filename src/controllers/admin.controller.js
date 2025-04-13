@@ -16,18 +16,19 @@ export const uploadBlog = async (req, res) => {
     return res.status(400).json({ message: "Image upload failed" });
   }
 
-  const imageUrl = imageUpload.secure_url;
+  const imageUrl =imageUpload.secure_url;
 
   try {
     const blog = await Blog.create({
       title,
       description,
-      image: imageUrl,
+      imageUrl,
     });
     return res
       .status(200)
       .json({ message: "Blog uploaded successfully", blog });
   } catch (error) {
+    console.log("Error in uploading blog:", error); 
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -56,19 +57,10 @@ export const getSpecificBlog = async (req, res) => {
 
 export const editBlog = async (req, res) => {
   const { id } = req.params;
-  const { title, description, image } = req.body;
+  const { title, description } = req.body;
 
   try {
     const updatedData = { title, description };
-
-    if (image) {
-      const imageUpload = await cloudinary.uploader.upload(image, {
-        folder: "blog",
-      });
-      if (imageUpload) {
-        updatedData.image = imageUpload.secure_url;
-      }
-    }
 
     const blog = await Blog.findByIdAndUpdate(id, updatedData, { new: true });
 
@@ -94,7 +86,6 @@ export const deleteBlog = async (req, res) => {
     return res.status(500).json({ message: "Failed to delete blog" });
   }
 };
-
 
 export const updatePassword = async (req, res) => {
   const { userId } = req.params;

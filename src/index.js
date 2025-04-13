@@ -7,15 +7,18 @@ import cors from "cors";
 
 dotenv.config();
 const app = express();
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+const corsOptions = {
+  origin: ["http://localhost:5173", ""],
+  credentials: true,
+  methods: ["GET", "POST","PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
-app.use("api/admin", adminRouter);
+app.use("/api/admin", adminRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/healthz", (req, res) => {
   res.status(200).json({ message: "Server is running" });
