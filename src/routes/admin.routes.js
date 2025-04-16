@@ -9,5 +9,5 @@ router.get("/blogs/:id", getSpecificBlog);
 router.put("/blogs/:id", editBlog);
 router.delete("/blogs/:id", deleteBlog);
 
-router.put("/users/:userId/password", updatePassword);
+router.put("/update-password", updatePassword);
 export default router;

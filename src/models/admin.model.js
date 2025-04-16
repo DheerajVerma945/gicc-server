@@ -7,10 +7,6 @@ const adminSchema = mongoose.Schema(
       unique: true,
       required: true,
     },
-    profilePic:{
-        type:String,
-        required:true,
-    },
     name: {
       type: String,
       required: true,
@@ -20,9 +16,6 @@ const adminSchema = mongoose.Schema(
       required: true,
     },
   },
-  {
-    timestamps: true,
-  }
 );
 
 const Admin = mongoose.model("Admin", adminSchema);

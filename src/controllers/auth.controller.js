@@ -1,4 +1,3 @@
-import { generateAuthToken } from "../utils/helper.js";
 import Admin from "../models/admin.model.js";
 
 export const login = async(req,res)=>{
@@ -8,7 +7,7 @@ export const login = async(req,res)=>{
         if(!email || !password){
             return res.status(400).json({message:"Please fill all the fields"})
         }
-        const admin = await Admin.find({email});
+        const admin = await Admin.findOne({email});
         if(!admin){
             return res.status(400).json({message:"Invalid Credentials"})
         }
@@ -16,7 +15,6 @@ export const login = async(req,res)=>{
         if(!isMatch){
             return res.status(400).json({message:"Invalid Credentials"})
         }
-        generateAuthToken(admin._id,res);
         return res.status(200).json({message:"Login Successful"})
     } catch (error) {
         console.log(error.message);
