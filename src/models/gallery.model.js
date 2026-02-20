@@ -1,14 +1,10 @@
 import mongoose from "mongoose";
 
-const blogSchema = mongoose.Schema(
+const gallerySchema = mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: true,
+      default: "",
     },
     imageUrl: {
       type: String,
@@ -18,11 +14,15 @@ const blogSchema = mongoose.Schema(
       type: String,
       default: "",
     },
+    category: {
+      type: String,
+      default: "general",
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const Blog = mongoose.model("Blog", blogSchema);
-export default Blog;
+const Gallery = mongoose.model("Gallery", gallerySchema);
+export default Gallery;

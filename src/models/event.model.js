@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const blogSchema = mongoose.Schema(
+const eventSchema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -10,13 +10,25 @@ const blogSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    date: {
+      type: Date,
+      required: true,
+    },
+    venue: {
+      type: String,
+      default: "",
+    },
     imageUrl: {
       type: String,
-      required: true,
+      default: "",
     },
     imagePublicId: {
       type: String,
       default: "",
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
     },
   },
   {
@@ -24,5 +36,5 @@ const blogSchema = mongoose.Schema(
   }
 );
 
-const Blog = mongoose.model("Blog", blogSchema);
-export default Blog;
+const Event = mongoose.model("Event", eventSchema);
+export default Event;
